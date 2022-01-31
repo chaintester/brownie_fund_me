@@ -1,0 +1,25 @@
+dependencies:
+  # - <organization/repo>@<version>    sa Githuba gledamo ovo
+  - smartcontractkit/chainlink-brownie-contracts@1.1.1
+# moramo reci kompajleru da pri importu u .sol fajlu zamjeni "@chainlink" sa ovim iznad
+compiler:
+  solc:
+    remappings:
+      - '@chainlink=smartcontractkit/chainlink-brownie-contracts@1.1.1'
+dotenv: .env
+networks:
+  default: development  # ovo je ionako po defaultu pa moze i bez ovog reda
+  rinkeby:
+    eth_usd_price_feed: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e'
+    verify: True # da li da se verifikuje na etherscan.io
+  mainnet-fork:
+    eth_usd_price_feed: '0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419'
+    verify: False # posto je ovo fork prave mreze
+  development:
+    verify: False
+  ganache-local:
+    verify: False
+  #kovan:
+  #mainnet: # ne smije biti praznih polja ili uvlacenja redova ili brownie nece pokrenuti skripte!
+wallets:
+  from_key: ${PRIVATE_KEY}
